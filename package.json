@@ -7,7 +7,9 @@
   "scripts": {
     "test":"npx playwright test",
     "test:ui":"npx playwright test --ui",
-    "report" : "npx playwright show-report"
+    "report" : "npx playwright show-report",
+    "test:createUser":"npx playwright test --project = createUser",
+    "test:createUser:debug": "npx playwright test --project=createUser --debug"
   },
   "keywords": [],
   "author": "",

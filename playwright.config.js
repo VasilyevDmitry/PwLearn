@@ -11,8 +11,8 @@ import { defineConfig, devices } from '@playwright/test'
  * @see https://playwright.dev/docs/test-configuration
  */
 const config  = defineConfig({
-  testDir: './tests',
-testMatch: '//test/**/*.spec.js', /* Можно указать паттерны. Любой уровень вложенности это эти знаки ** потом файл начинается не важно как и закнчивается  spec.js */
+testDir: './tests',
+testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны. Любой уровень вложенности это эти знаки ** потом файл начинается не важно как и закнчивается  spec.js */
 // testIgnore: и пописать путь к файлам то эти все тесты будут игнорироваться
 
   /* Run tests in files in parallel */
@@ -49,15 +49,15 @@ testMatch: '//test/**/*.spec.js', /* Можно указать паттерны.
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
