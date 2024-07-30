@@ -14,47 +14,47 @@ export default class SignUpPopup extends BaseComponents {
      this.textInvalidFeedback = page.locator('.invalid-feedback')
      }
  
-     async fill_Name (name) {
-     name && await this.fieldName.fill(name)
+     async fillName (name) {
+          await this.fieldName.fill(name)
      }
 
-     async fill_LastName (lastName) {
-          lastName && await this.fieldLastName.fill(lastName)
+     async fillLastName (lastName) {
+          await this.fieldLastName.fill(lastName)
      }
 
-     async fill_Email (email) {
-          email && await this.fieldEmail.fill(email)
+     async fillEmail (email) {
+          await this.fieldEmail.fill(email)
      }
 
-     async fill_Password (password) {
-          password && await this.fieldPassword.fill(password)
+     async fillPassword (password) {
+          await this.fieldPassword.fill(password)
      }
 
-     async fill_RepeatPassword (repeatPassword) {
-          repeatPassword && await this.fieldRepeatPassword.fill(repeatPassword)
+     async fillRepeatPassword (repeatPassword) {
+          await this.fieldRepeatPassword.fill(repeatPassword)
      }
 
-     async click_Email() {
+     async clickEmail() {
           await this.fieldEmail.click()
      }
 
-     async click_btnRegister () {
+     async clickBtnRegister () {
           await this.btnRegister.click()
      }
 
-     async click_Name () {
+     async clickName () {
           await this.fieldName.click()
      }
 
-     async click_LastName () {
+     async clickLastName () {
           await this.fieldLastName.click()
      }
 
-     async click_Password () {
+     async clickPassword () {
           await this.fieldPassword.click()
      }
-     
-     async click_RepeatPassword () {
+
+     async clickRepeatPassword () {
           await this.fieldRepeatPassword.click()
      }
  }

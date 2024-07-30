@@ -1,19 +1,19 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('check for field ReEnterPassword in form Sign up', () => {
   let signUpPopup
   
   test.beforeEach('Sign up', async ({ page }) => {
-      const formSignUp = new FormSignUp(page)
-      await formSignUp.openPage()
-      signUpPopup = await formSignUp.signUp.clickSignUpButton()
+      const registrationPage = new RegistrationPage(page)
+      await registrationPage.openPage()
+      signUpPopup = await registrationPage.signUp.clickSignUpButton()
   });
 
 test('check empty field ReEnterPassword', async ({ page }) => {
   
-  await signUpPopup.click_RepeatPassword() 
+  await signUpPopup.clickRepeatPassword() 
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldRepeatPassword, 'empty ReEnterPassword > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -24,8 +24,8 @@ test('check empty field ReEnterPassword', async ({ page }) => {
 
 test('check field matching ReEnterPassword and Password', async ({ page }) => {
   
-  await signUpPopup.fill_Password("Password123")
-  await signUpPopup.fill_RepeatPassword('Password321') 
+  await signUpPopup.fillPassword("Password123")
+  await signUpPopup.fillRepeatPassword('Password321') 
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldRepeatPassword, 'invalid Password >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');

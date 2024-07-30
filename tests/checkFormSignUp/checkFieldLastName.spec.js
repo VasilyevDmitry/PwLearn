@@ -1,19 +1,19 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('check for field Last Name in form Sign up', () => {
 let signUpPopup
   
 test.beforeEach('Sign up', async ({ page }) => {
-    const formSignUp = new FormSignUp(page)
-    await formSignUp.openPage()
-    signUpPopup = await formSignUp.signUp.clickSignUpButton()
+    const registrationPage = new RegistrationPage(page)
+    await registrationPage.openPage()
+    signUpPopup = await registrationPage.signUp.clickSignUpButton()
 });
 
 test('check empty field Last Name', async ({ page }) => {
   
-  await signUpPopup.click_LastName()
+  await signUpPopup.clickLastName()
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'empty LastName > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -24,7 +24,7 @@ test('check empty field Last Name', async ({ page }) => {
 
 test('check for wrong with letters data in field Last Name', async ({ page }) => {
   
-  await signUpPopup.fill_LastName('тррр')
+  await signUpPopup.fillLastName('тррр')
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'wrong Name, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -35,7 +35,7 @@ test('check for wrong with letters data in field Last Name', async ({ page }) =>
 
 test('check for wrong data with numbers in Last Name', async ({ page }) => {
   
-  await signUpPopup.fill_LastName('438848')
+  await signUpPopup.fillLastName('438848')
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'wrong Name > numbers > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -45,7 +45,7 @@ test('check for wrong data with numbers in Last Name', async ({ page }) => {
 });
 test('check for wrong data with symbols in Last Name', async ({ page }) => {
   
-  await signUpPopup.fill_LastName('dj@j')
+  await signUpPopup.fillLastName('dj@j')
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'wrong Name, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -55,7 +55,7 @@ test('check for wrong data with symbols in Last Name', async ({ page }) => {
 });
 test('check for wrong input min length in Last Name', async ({ page }) => {
   
-  await signUpPopup.fill_LastName('r')
+  await signUpPopup.fillLastName('r')
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'wrong Name > minLength > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -65,7 +65,7 @@ test('check for wrong input min length in Last Name', async ({ page }) => {
 });
 test('check for wrong input max length in Last Name', async ({ page }) => {
   
-  await signUpPopup.fill_LastName('VeryVeryVeryVeryLongN')
+  await signUpPopup.fillLastName('VeryVeryVeryVeryLongN')
   await signUpPopup.fieldPassword.focus() 
 
   await expect(signUpPopup.fieldLastName, 'wrong Name > maxLength > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');

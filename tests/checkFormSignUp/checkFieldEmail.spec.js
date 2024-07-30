@@ -1,19 +1,19 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('check for field Email in form Sign up', () => {
   let signUpPopup
   
   test.beforeEach('Sign up', async ({ page }) => {
-    const formSignUp = new FormSignUp(page)
-    await formSignUp.openPage()
-    signUpPopup = await formSignUp.signUp.clickSignUpButton()
+    const registrationPage = new RegistrationPage(page)
+    await registrationPage.openPage()
+    signUpPopup = await registrationPage.signUp.clickSignUpButton()
 });
 
 test('check empty field Email', async ({ page }) => {
   
-  await signUpPopup.click_Email()
+  await signUpPopup.clickEmail()
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldEmail, 'empty Email > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -24,7 +24,7 @@ test('check empty field Email', async ({ page }) => {
 
 test('check for invalid "Email" input One', async ({ page }) => {
   
-  await signUpPopup.fill_Email('dmitryv449@')
+  await signUpPopup.fillEmail('dmitryv449@')
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldEmail, 'invalid Email One > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -35,7 +35,7 @@ test('check for invalid "Email" input One', async ({ page }) => {
 
 test('check for invalid "Email" input Two', async ({ page }) => {
   
-  await signUpPopup.fill_Email('/@dkkkdcom')
+  await signUpPopup.fillEmail('/@dkkkdcom')
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldEmail, 'invalid Email Two > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -46,7 +46,7 @@ test('check for invalid "Email" input Two', async ({ page }) => {
 
 test('check for invalid "Email" input Three', async ({ page }) => {
 
-  await signUpPopup.fill_Email('fkfk*@dkkkdcom')
+  await signUpPopup.fillEmail('fkfk*@dkkkdcom')
   await signUpPopup.fieldLastName.focus()
 
   await expect(signUpPopup.fieldEmail, 'invalid Email Three > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');

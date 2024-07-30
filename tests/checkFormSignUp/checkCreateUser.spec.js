@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('create User', () => {
   
@@ -8,16 +8,16 @@ test.describe('create User', () => {
     let email = `aqa-myEmail${Math.round(Math.random()*100)}@email.com`
     let signUpPopup
 
-    const formSignUp = new FormSignUp(page)
-    await formSignUp.openPage()
-    signUpPopup = await formSignUp.signUp.clickSignUpButton()
+    const registrationPage = new RegistrationPage(page)
+    await registrationPage.openPage()
+    signUpPopup = await registrationPage.signUp.clickSignUpButton()
 
-    await signUpPopup.fill_Name('Name')
-    await signUpPopup.fill_LastName('lastName')
-    await signUpPopup.fill_Email(email)
-    await signUpPopup.fill_Password('Password123')
-    await signUpPopup.fill_RepeatPassword('Password123') 
-    await signUpPopup.click_btnRegister()
+    await signUpPopup.fillName('Name')
+    await signUpPopup.fillLastName('lastName')
+    await signUpPopup.fillEmail(email)
+    await signUpPopup.fillPassword('Password123')
+    await signUpPopup.fillRepeatPassword('Password123') 
+    await signUpPopup.clickBtnRegister()
 
     await expect(signUpPopup.btnMyProfileIsVisible, 'сreate User > User did not create').toBeVisible()
 

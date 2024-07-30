@@ -1,20 +1,20 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('check for field Password in form Sign up', () => {
   
 let signUpPopup
   
   test.beforeEach('Sign up', async ({ page }) => {
-      const formSignUp = new FormSignUp(page)
-      await formSignUp.openPage()
-      signUpPopup = await formSignUp.signUp.clickSignUpButton()
+      const registrationPage = new RegistrationPage(page)
+      await registrationPage.openPage()
+      signUpPopup = await registrationPage.signUp.clickSignUpButton()
   });
 
 test('check empty field Password', async ({ page }) => {
   
-  await signUpPopup.click_Password()
+  await signUpPopup.clickPassword()
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldPassword, 'empty Password > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -25,7 +25,7 @@ test('check empty field Password', async ({ page }) => {
 
 test('check for invalid "Password" length = 7', async ({ page }) => {
   
-  await signUpPopup.fill_Password("Dima123")
+  await signUpPopup.fillPassword("Dima123")
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldPassword, 'invalid Password > length =7 >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -35,7 +35,7 @@ test('check for invalid "Password" length = 7', async ({ page }) => {
 });
 test('check for invalid "Password" length = 16', async ({ page }) => {
   
-  await signUpPopup.fill_Password("Dima123451234588")
+  await signUpPopup.fillPassword("Dima123451234588")
   await signUpPopup.fieldLastName.focus() 
 
   await expect(signUpPopup.fieldPassword, 'invalid Password > length = 16 >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -46,7 +46,7 @@ test('check for invalid "Password" length = 16', async ({ page }) => {
 
 test('check for invalid "Password" oneInteger', async ({ page }) => {
   
-  await signUpPopup.fill_Password("DimaDima")
+  await signUpPopup.fillPassword("DimaDima")
   await signUpPopup.fieldLastName.focus()
 
   await expect(signUpPopup.textInvalidFeedback, 'invalid Password > oneInteger >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -57,7 +57,7 @@ test('check for invalid "Password" oneInteger', async ({ page }) => {
 
 test('check for invalid "Password" oneCapital', async ({ page }) => {
 
-  await signUpPopup.fill_Password("dimadima12")
+  await signUpPopup.fillPassword("dimadima12")
   await signUpPopup.fieldLastName.focus()
 
   await expect(signUpPopup.textInvalidFeedback, 'invalid Password > oneCapital >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
@@ -68,7 +68,7 @@ test('check for invalid "Password" oneCapital', async ({ page }) => {
 
 test('check for invalid "Password" oneSmall', async ({ page }) => {
   
-  await signUpPopup.fill_Password("DIMA121222")
+  await signUpPopup.fillPassword("DIMA121222")
   await signUpPopup.fieldLastName.focus()
 
   await expect(signUpPopup.textInvalidFeedback, 'invalid Password > oneSmall >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
