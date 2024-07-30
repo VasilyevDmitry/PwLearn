@@ -1,46 +1,37 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import FormSignUp from '../../src/pageObjects/formSignUp/FormSignUp';
 
 test.describe('check for field ReEnterPassword in form Sign up', () => {
+  let signUpPopup
   
   test.beforeEach('Sign up', async ({ page }) => {
-    await page.goto('/');
-
-    const btnSignUp = page.getByText('Sign up')
-  
-    await btnSignUp.click()
-});
+      const formSignUp = new FormSignUp(page)
+      await formSignUp.openPage()
+      signUpPopup = await formSignUp.signUp.clickSignUpButton()
+  });
 
 test('check empty field ReEnterPassword', async ({ page }) => {
   
-  const fieldRepeatPassword = page.locator('#signupRepeatPassword')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
-  
-  await fieldRepeatPassword.click() 
-  await forShiftFocus.focus() 
+  await signUpPopup.click_RepeatPassword() 
+  await signUpPopup.fieldLastName.focus() 
 
-  await expect(fieldRepeatPassword, 'empty ReEnterPassword > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'empty ReEnterPassword > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'empty ReEnterPassword > error in error name').toContainText('Re-enter password required')
-  await expect(textInvalidFeedback, 'empty ReEnterPassword > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldRepeatPassword, 'empty ReEnterPassword > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'empty ReEnterPassword > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'empty ReEnterPassword > error in error name').toContainText('Re-enter password required')
+  await expect(signUpPopup.textInvalidFeedback, 'empty ReEnterPassword > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
 
 test('check field matching ReEnterPassword and Password', async ({ page }) => {
   
-  const fieldPassword = page.locator('#signupPassword')
-  const fieldRepeatPassword = page.locator('#signupRepeatPassword')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
-  
-  await fieldPassword.fill('Password123')
-  await fieldRepeatPassword.fill('Password321')
-  await forShiftFocus.focus() 
+  await signUpPopup.fill_Password("Password123")
+  await signUpPopup.fill_RepeatPassword('Password321') 
+  await signUpPopup.fieldLastName.focus() 
 
-  await expect(fieldRepeatPassword, 'invalid Password >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'invalid Password > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'invalid Password > error in error name').toContainText('Passwords do not match')
-  await expect(textInvalidFeedback, 'invalid Password > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldRepeatPassword, 'invalid Password >, error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'invalid Password > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Password > error in error name').toContainText('Passwords do not match')
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Password > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
 
 
