@@ -1,33 +1,25 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('create User', () => {
   
   test('check сreate User', async ({ page }) => {
     let email = `aqa-myEmail${Math.round(Math.random()*100)}@email.com`
-    await page.goto('/');
+    let signUpPopup
 
-    const btnSignUp = page.getByText('Sign up')
-  
-    await btnSignUp.click()
+    const registrationPage = new RegistrationPage(page)
+    await registrationPage.openPage()
+    signUpPopup = await registrationPage.signUp.clickSignUpButton()
 
-    const fieldName = page.locator('#signupName')
-    const fieldLastName = page.locator('#signupLastName')
-    const fieldEmail = page.locator('#signupEmail')
-    const fieldPassword = page.locator('#signupPassword')
-    const fieldRepeatPassword = page.locator('#signupRepeatPassword')
-    const btnRegister = page.getByRole('button', { name: 'Register'})
-    const btnMyProfileIsVisible = page.getByRole('button', { name: 'My profile'})
+    await signUpPopup.fillName('Name')
+    await signUpPopup.fillLastName('lastName')
+    await signUpPopup.fillEmail(email)
+    await signUpPopup.fillPassword('Password123')
+    await signUpPopup.fillRepeatPassword('Password123') 
+    await signUpPopup.clickBtnRegister()
 
-    await fieldName.fill('Name') 
-    await fieldLastName.fill('lastName') 
-    await fieldEmail.fill(email) 
-    await fieldPassword.fill('Password123') 
-    await fieldRepeatPassword.fill('Password123') 
-    await btnRegister.click()
-
-    await expect(btnMyProfileIsVisible, 'сreate User > User did not create').toBeVisible()
-
+    await expect(signUpPopup.btnMyProfileIsVisible, 'сreate User > User did not create').toBeVisible()
 
 });
 

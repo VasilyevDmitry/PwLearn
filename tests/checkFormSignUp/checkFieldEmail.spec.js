@@ -1,73 +1,58 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
 test.describe('check for field Email in form Sign up', () => {
+  let signUpPopup
   
   test.beforeEach('Sign up', async ({ page }) => {
-    await page.goto('/');
-
-    const btnSignUp = page.getByText('Sign up')
-  
-    await btnSignUp.click()
+    const registrationPage = new RegistrationPage(page)
+    await registrationPage.openPage()
+    signUpPopup = await registrationPage.signUp.clickSignUpButton()
 });
 
 test('check empty field Email', async ({ page }) => {
   
-  const fieldEmail = page.locator('#signupEmail')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
-  
-  await fieldEmail.click() 
-  await forShiftFocus.focus() 
+  await signUpPopup.clickEmail()
+  await signUpPopup.fieldLastName.focus() 
 
-  await expect(fieldEmail, 'empty Email > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'empty Email > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'empty Email > error in error name').toContainText('Email required')
-  await expect(textInvalidFeedback, 'empty Email > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldEmail, 'empty Email > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'empty Email > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'empty Email > error in error name').toContainText('Email required')
+  await expect(signUpPopup.textInvalidFeedback, 'empty Email > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
 
 test('check for invalid "Email" input One', async ({ page }) => {
   
-  const fieldEmail = page.locator('#signupEmail')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
+  await signUpPopup.fillEmail('dmitryv449@')
+  await signUpPopup.fieldLastName.focus() 
 
-  await fieldEmail.fill('dmitryv449@')
-  await forShiftFocus.focus() 
-
-  await expect(fieldEmail, 'invalid Email One > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'invalid Email One > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'invalid Email One > error in error name').toContainText('Email is incorrect')
-  await expect(textInvalidFeedback, 'invalid Email One > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldEmail, 'invalid Email One > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'invalid Email One > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email One > error in error name').toContainText('Email is incorrect')
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email One > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
 
 test('check for invalid "Email" input Two', async ({ page }) => {
   
-  const fieldEmail = page.locator('#signupEmail')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
+  await signUpPopup.fillEmail('/@dkkkdcom')
+  await signUpPopup.fieldLastName.focus() 
 
-  await fieldEmail.fill('/@dkkkdcom')
-  await forShiftFocus.focus() 
-
-  await expect(fieldEmail, 'invalid Email Two > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'invalid Email Two > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'invalid Email Two > error in error name').toContainText('Email is incorrect')
-  await expect(textInvalidFeedback, 'invalid Email Two > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldEmail, 'invalid Email Two > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'invalid Email Two > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email Two > error in error name').toContainText('Email is incorrect')
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email Two > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
+
 test('check for invalid "Email" input Three', async ({ page }) => {
-  
-  const fieldEmail = page.locator('#signupEmail')
-  const textInvalidFeedback = page.locator('.invalid-feedback')
-  const forShiftFocus = page.locator('#signupLastName')
 
-  await fieldEmail.fill('fkfk*@dkkkdcom')
-  await forShiftFocus.focus() 
+  await signUpPopup.fillEmail('fkfk*@dkkkdcom')
+  await signUpPopup.fieldLastName.focus()
 
-  await expect(fieldEmail, 'invalid Email Three > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
-  await expect(textInvalidFeedback,'invalid Email Three > error of visible' ).toBeVisible()
-  await expect(textInvalidFeedback, 'invalid Email Three > error in error name').toContainText('Email is incorrect')
-  await expect(textInvalidFeedback, 'invalid Email Three > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
+  await expect(signUpPopup.fieldEmail, 'invalid Email Three > error color').toHaveCSS('border-color', 'rgb(220, 53, 69)');
+  await expect(signUpPopup.textInvalidFeedback,'invalid Email Three > error of visible' ).toBeVisible()
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email Three > error in error name').toContainText('Email is incorrect')
+  await expect(signUpPopup.textInvalidFeedback, 'invalid Email Three > error in color for error name').toHaveCSS('color',  'rgb(220, 53, 69)');
 });
 
 });
