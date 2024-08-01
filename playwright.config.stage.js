@@ -12,7 +12,7 @@ import { config as appConfig}  from './config/config';
 
 dotenv.config({ 
   
- path: './.env' 
+ path: 'env/.env.stage' 
 
 });
 

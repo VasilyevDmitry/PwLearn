@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 import RegistrationPage from '../../src/pageObjects/formSignUp/RegistrationPage';
 
-test.describe('create User', () => {
+test.describe.only('create User', () => {
   
   test('check сreate User', async ({ page }) => {
     let email = `aqa-myEmail${Math.round(Math.random()*100)}@email.com`
