@@ -1,4 +1,5 @@
 import {expect} from "@playwright/test";
+import Header from "../components/Header";
 
 
 export default class BasePage {
@@ -6,6 +7,7 @@ export default class BasePage {
         this._page = page
         this._url = url
         this._waitPageLocator = waitPageLocator
+        this.header = new Header(page)
     
     }
     async openPage(){

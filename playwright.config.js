@@ -55,8 +55,16 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      dependencies:['setup:stage'],
+      use: { ...devices['Desktop Chrome'] }
+      
     },
+    {
+      name: 'setup:stage',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '/tests/**/*.setup.js'
+      
+    }
 
     // {
     //   name: 'firefox',
