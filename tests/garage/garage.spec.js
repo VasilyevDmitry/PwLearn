@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import GaragePage from "../../src/pageObjects/garagePage/GargePage.js";
 import { USER1_STORAGE_STATE_PATH } from "../../src/data/constats.js";
 
-test.describe.only('Garage', () => {
+test.describe('Garage', () => {
     let garagePage
 
         test.beforeEach(async ({browser}) => {
