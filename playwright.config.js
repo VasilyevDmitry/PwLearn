@@ -35,6 +35,7 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     headless: true, //* если false то при отрбатке тестов открывается браузер открывается если true то не открывается браузер*/
@@ -55,16 +56,16 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
   projects: [
     {
       name: 'chromium',
-      dependencies:['setup:stage'],
+      // dependencies:['setup:stage'],
       use: { ...devices['Desktop Chrome'] }
       
     },
-    {
-      name: 'setup:stage',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '/tests/**/*.setup.js'
+    // {
+    //   name: 'setup:stage',
+    //   use: { ...devices['Desktop Chrome'] },
+    //   testMatch: '/tests/**/*.setup.js'
       
-    }
+    // }
 
     // {
     //   name: 'firefox',
