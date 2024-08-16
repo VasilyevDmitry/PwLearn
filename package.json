@@ -21,6 +21,9 @@
     "@types/node": "^20.14.11"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "axios": "^1.7.3",
+    "axios-cookiejar-support": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "tough-cookie": "^4.1.4"
   }
 }
