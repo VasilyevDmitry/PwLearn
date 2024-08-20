@@ -1,7 +1,7 @@
 
 import { creatNewUser as test, expect} from "../../../src/fixtures/createNewUser.js";
 
-test.describe.only("Get cars", ()=> {
+test.describe("Get cars", ()=> {
     
     // test.afterEach(async ({ userControllers })=>{
     //     const deleteUser = await userControllers.deleteUser()

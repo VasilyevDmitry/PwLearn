@@ -23,7 +23,7 @@ test.describe("Get car models", ()=> {
     
     test("Model by id", async()=>{
 
-        const getCarBrandsId = await carsController.getCarModelsId(17)
+        const getCarBrandsId = await carsController.getCarModelsId(ID_MODELS.id)
         const respnsCarBrandsId = await getCarBrandsId.json()
 
         console.log(respnsCarBrandsId.data);

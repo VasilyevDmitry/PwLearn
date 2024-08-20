@@ -1,4 +1,4 @@
-export const ALL_BRABDS = [
+export const ALL_BRANDS = [
     { id: 1, title: 'Audi', logoFilename: 'audi.png' },
     { id: 2, title: 'BMW', logoFilename: 'bmw.png' },
     { id: 3, title: 'Ford', logoFilename: 'ford.png' },
@@ -6,7 +6,7 @@ export const ALL_BRABDS = [
     { id: 5, title: 'Fiat', logoFilename: 'fiat.png' }
 ]
 
-export const ID_BRABD = {
+export const ID_BRAND = {
     id: 4, title: 'Porsche', logoFilename: 'porsche.png' 
 }
 
