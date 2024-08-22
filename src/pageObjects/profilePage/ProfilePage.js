@@ -1,5 +1,5 @@
 import BasePage from "../BasePage";
-import EditProfile from "./components/editProfile";
+import EditProfile from "./components/EditProfile";
 
 export default class ProfilePage extends BasePage{
     constructor(page) {
