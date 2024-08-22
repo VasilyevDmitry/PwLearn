@@ -2,7 +2,7 @@ import {test as base, expect as baseExpect ,request as apiRequest} from "@playwr
 import CarsController from "../controllers/CarsControllers"
 import { CAR_BRAND_BMW } from "../data/carBrand";
 import { RequestBody } from "../data/users";
-import UserControllers from "../controllers/userControllers";
+import UserControllers from "../controllers/UserControllers";
 
 export const creatNewUser = base.extend({
     userControllers:  async ({request}, use)=>{
