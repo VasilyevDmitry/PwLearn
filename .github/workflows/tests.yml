@@ -3,13 +3,13 @@ name: "Playwright tests"
 on: push
 
 jobs:
-  api-tests: 
+  api-tests:
     runs-on: ubuntu-22.04
-    container: "mcr.microsoft.com/playwright:v1.45.2-jammy"
-    steps: 
+    container: 'mcr.microsoft.com/playwright:v1.46.0-jammy'
+    steps:
       - name: "Checkout to tests repository"
         uses: actions/checkout@v4
-         with:
+        with:
           repository: '${{ github.repository }}'
           ref: ${{ github.ref }}
       - name: "Install node js"
