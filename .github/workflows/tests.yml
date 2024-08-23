@@ -20,7 +20,7 @@ jobs:
         run: npm ci
       - name: "Run tests"
         env:
-          ENV: 'env'
+          ENV: '.env'
         run: npm run test
       - name: "Upload report to artifacts"
         if: failure()
