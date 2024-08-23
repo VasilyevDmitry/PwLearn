@@ -20,9 +20,7 @@ jobs:
         run: npm ci
       - name: "Run tests"
         env:
-          ENV: '.env'
-          HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
-          HTTP_CREDENTIALS_PASSWORD: ${{ secrets.HTTP_CREDENTIALS_PASSWORD }}
+          ENV: 'env'
         run: npm run test
       - name: "Upload report to artifacts"
         if: failure()
