@@ -48,6 +48,7 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
       username: appConfig.httpCredentials.username ?? ' ',
       password: appConfig.httpCredentials.password ?? ' '
     },
+    
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
