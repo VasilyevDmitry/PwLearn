@@ -33,7 +33,10 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', {open:'never'}]],
+  reporter: [
+    ['html', {open:'never'}], 
+    [process.env.CI ? 'github': 'list']
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   
   use: {
@@ -45,6 +48,7 @@ testMatch: '/tests/**/*.spec.js', /* Можно указать паттерны.
       username: appConfig.httpCredentials.username ?? ' ',
       password: appConfig.httpCredentials.password ?? ' '
     },
+    
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
