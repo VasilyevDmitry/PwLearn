@@ -22,6 +22,8 @@ jobs:
         env:
           ENV: '.env'
           BASE_URL: 'https://qauto.forstudy.space/'
+          HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
+          HTTP_CREDENTIALS_PASSWORD: ${{ secrets.HTTP_CREDENTIALS_PASSWORD }}
         run: npm run test
       - name: "Upload report to artifacts"
         if: failure()
